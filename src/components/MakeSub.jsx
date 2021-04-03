@@ -1,5 +1,34 @@
 import React, {useReducer} from 'react';
-// import styled from 'styled-components'
+import styled from 'styled-components'
+
+const InputNum = styled.input`
+    width: 30px;
+    line-height: 30px;
+    text-align: right;
+`;
+
+const InputTitle = styled.input`
+    width: 300px;
+    line-height: 30px;
+    display: block;
+`;
+
+const ButtonNum = styled.button`
+    border: none;
+    width: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    &+&{
+        margin-left: 5px;
+    }
+`;
+
+const Button = styled.button`
+    border: none;
+    display: block;
+    width: 300px;
+    line-height: 30px;
+`;
 
 function reducer(state, action){
     switch(action.type){
@@ -28,10 +57,10 @@ const MakeSub = ({text, setPages, subpage, cnt})=>{
     return(
         <>
             <h3>{text}{subpage||cnt} 개수</h3>
-            <input value={state.value} readOnly/>
-            <button onClick={()=>dispatch({type:'INCREMENT'})}>+1</button>
-            <button onClick={()=>dispatch({type:'DECREMENT'})}>-1</button>
-            {subpage && <button onClick={selectSubPage}>make!</button>}
+            <InputNum value={state.value} readOnly/>
+            <ButtonNum onClick={()=>dispatch({type:'INCREMENT'})}>+</ButtonNum>
+            <ButtonNum onClick={()=>dispatch({type:'DECREMENT'})}>-</ButtonNum>
+            {subpage&&<Button onClick={selectSubPage}>make!</Button>}
         </>
     );
 }
