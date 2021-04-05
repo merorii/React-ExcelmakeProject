@@ -24,22 +24,15 @@ const SelectPage = ()=>{
     const [pages, setPages] = useState({
         state: true,
         cnt: 4,
-        substate: false,
     });
 
-    const inputSubPage = ()=>{
-        setPages({
-            ...pages,
-            substate: true
-        })
-    }
     const subpage = useSelector((state)=>state.subpages.subpage)
 
     return(
         <SelectPageBlock>
             <section>
                 <SelectBranch />
-                {pages.state && Array(pages.cnt).fill('a').map((hello, idx)=>
+                {Array(pages.cnt).fill('a').map((hello, idx)=>
                     <MakeSub 
                         cnt={idx+1} 
                         key={idx} 

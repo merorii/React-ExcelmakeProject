@@ -18,7 +18,8 @@ const Coupon = ()=>{
         row: 0,
         col: 0
     })
-
+    const couponArr = [];
+    
     const onChangeRow = (e)=>{
         setCoupon({
             ...coupon,
@@ -32,15 +33,22 @@ const Coupon = ()=>{
         })
     }
 
+    const onClickCoupon = ()=>{
+
+    }
     return(
         <>
             쿠폰
             고객군수 <input type="number" onChange={onChangeRow}/>
             쿠폰수 <input type="number" onChange={onChangeCol}/>
-            {Array(coupon.row).fill('a').map((hello, idx)=>
-                <Col key={idx}>
-                    {Array(coupon.col).fill('a').map((hello, idx)=>
-                        <Row key={idx}></Row>
+            {Array(coupon.row).fill('a').map((hello, rowIdx)=>
+                <Col key={rowIdx}>
+                    {Array(coupon.col).fill('a').map((hello, colIdx)=>
+                        <Row key={colIdx} onClick={onClickCoupon}
+                        // style={{
+                        //     background:(couponArr[rowIdx][colIdx]===1)?'black':'gray'
+                        // }}
+                        ></Row>
                     )}
                 </Col>
             )}

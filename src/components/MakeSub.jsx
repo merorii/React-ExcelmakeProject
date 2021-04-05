@@ -39,9 +39,10 @@ const MakeSub = ({cnt})=>{
 
     const dispatch = useDispatch();
 
-    const selectSubPage = (type)=>{
+    const onChangeNum = (e)=>{
+        
         let _subpage = subpage.subpage.map((page, idx)=>{
-            if(idx === (cnt-1)) return (type==='plus')?page+1:page-1;
+            if(idx === (cnt-1)) return e.target.value*1;
             else return page;
         });
         setSub({
@@ -50,6 +51,17 @@ const MakeSub = ({cnt})=>{
             cnt: cnt
         });
     }
+    // const selectSubPage = (type)=>{
+    //     let _subpage = subpage.subpage.map((page, idx)=>{
+    //         if(idx === (cnt-1)) return (type==='plus')?page+1:page-1;
+    //         else return page;
+    //     });
+    //     setSub({
+    //         ...sub,
+    //         subpage: _subpage,
+    //         cnt: cnt
+    //     });
+    // }
 
     useEffect(()=> {
         dispatch(changenum(sub.subpage));
@@ -66,9 +78,9 @@ const MakeSub = ({cnt})=>{
     return(
         <>
             <h3>상세{cnt} 개수</h3>
-            <InputNum value={subpage.subpage[cnt-1]} readOnly/>
-            <ButtonNum onClick={()=>selectSubPage('plus')}>+</ButtonNum>
-            <ButtonNum onClick={()=>selectSubPage('minus')}>-</ButtonNum>
+            <InputNum value={subpage.subpage[cnt-1]} type="number" onChange={onChangeNum}/>
+            {/* <ButtonNum onClick={()=>selectSubPage('plus')}>+</ButtonNum>
+            <ButtonNum onClick={()=>selectSubPage('minus')}>-</ButtonNum> */}
             <InputTitle onChange={onChangeTitle}/>
         </>
     );

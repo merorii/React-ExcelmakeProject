@@ -17,7 +17,7 @@ const InputInfoPage = ()=>{
     const br = useSelector((state)=>state.subpages.br);
     const subpage = useSelector((state)=>state.subpages.subpage);
     const title = useSelector((state)=>state.subpages.title);
-
+    const [mainData, setMainData] = useState()
     const [data, setData] = useState([
         {
             title:'',
@@ -60,8 +60,8 @@ const InputInfoPage = ()=>{
         const new_workbook = XLSX.utils.book_new(); // excel 파일에 해당
         XLSX.utils.book_append_sheet(new_workbook, worksheet, 'sub'); // excelsheet를 excel파일에 넣음 
 
-        // const worksheet2 = XLSX.utils.json_to_sheet(data); // excel sheet하단의 worksheet에 해당 
-        // XLSX.utils.book_append_sheet(new_workbook, worksheet2, 'coupon'); // excelsheet를 excel파일에 넣음 
+        const worksheet2 = XLSX.utils.json_to_sheet(data); // excel sheet하단의 worksheet에 해당 
+        XLSX.utils.book_append_sheet(new_workbook, worksheet2, 'coupon'); // excelsheet를 excel파일에 넣음 
 
         XLSX.writeFile(new_workbook, filename + '.xlsx'); 
     }

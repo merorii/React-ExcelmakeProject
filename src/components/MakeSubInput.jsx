@@ -16,13 +16,12 @@ const MakeSubInput = ({page, pageNum})=>{
 
     const pages = `sub${pageNum}`;
 
-    const nameInput = useRef();
     
     return(
         <MakeSubInputBlock>
             {pages}
             {Array(page).fill('a').map((hello, idx)=>
-                <InputTitle key={idx} value={idx} className={pages} readOnly ref={nameInput}/>
+                <InputTitle key={idx} className={pages} />
             )}
         </MakeSubInputBlock>
     );
