@@ -1,5 +1,8 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useState} from 'react';
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux';
+import { changenum, setMainTitle } from '../reducers/subpages';
+import { useEffect } from 'react';
 
 const InputNum = styled.input`
     width: 30px;
@@ -30,37 +33,43 @@ const Button = styled.button`
     line-height: 30px;
 `;
 
-function reducer(state, action){
-    switch(action.type){
-        case 'INCREMENT':
-            return {value : state.value+1};
-        case 'DECREMENT':
-            return {value : state.value-1};
-        default:
-            return state;
-    }
-}
+const MakeSub = ({cnt})=>{
+    const subpage = useSelector((state)=>state.subpages);
+    const [sub, setSub] = useState(subpage);
 
-const MakeSub = ({text, setPages, subpage, cnt})=>{
+    const dispatch = useDispatch();
 
-    const [state,dispatch] = useReducer(reducer, {
-        value: subpage?4:1
-    });
-
-    const selectSubPage = ()=>{
-        setPages({
-            state: true,
-            cnt: state.value
+    const selectSubPage = (type)=>{
+        let _subpage = subpage.subpage.map((page, idx)=>{
+            if(idx === (cnt-1)) return (type==='plus')?page+1:page-1;
+            else return page;
         });
+        setSub({
+            ...sub,
+            subpage: _subpage,
+            cnt: cnt
+        });
+    }
+
+    useEffect(()=> {
+        dispatch(changenum(sub.subpage));
+    }, [sub]);
+
+    const onChangeTitle = (e)=>{
+        let _title = subpage.title.map((title, idx)=>{
+            if(idx === (cnt-1)) return e.target.value;
+            else return title;
+        });
+        dispatch(setMainTitle(_title));
     }
 
     return(
         <>
-            <h3>{text}{subpage||cnt} 개수</h3>
-            <InputNum value={state.value} readOnly/>
-            <ButtonNum onClick={()=>dispatch({type:'INCREMENT'})}>+</ButtonNum>
-            <ButtonNum onClick={()=>dispatch({type:'DECREMENT'})}>-</ButtonNum>
-            {subpage&&<Button onClick={selectSubPage}>make!</Button>}
+            <h3>상세{cnt} 개수</h3>
+            <InputNum value={subpage.subpage[cnt-1]} readOnly/>
+            <ButtonNum onClick={()=>selectSubPage('plus')}>+</ButtonNum>
+            <ButtonNum onClick={()=>selectSubPage('minus')}>-</ButtonNum>
+            <InputTitle onChange={onChangeTitle}/>
         </>
     );
 }

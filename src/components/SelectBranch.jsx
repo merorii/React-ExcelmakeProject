@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
-import styled from 'styled-components'
+
+import styled from 'styled-components';
+
+import { useDispatch } from 'react-redux';
+import { setPageBranch } from '../reducers/subpages';
 
 const BranchBlock = styled.section`
     margin: 10px;
@@ -27,9 +31,14 @@ const Branch = styled.div`
 `;
 
 const SelectBranch = ()=>{
-
     const [nowBranch, setBranch] = useState('bd');
 
+    const dispatch = useDispatch();
+    const onSetBranch = (br) => {
+        dispatch(setPageBranch(br));
+        setBranch(br);
+    };
+    
     const branchList = [
         {
             text:'분당',
@@ -49,17 +58,13 @@ const SelectBranch = ()=>{
         }
     ];
 
-    const onClickBranch = (br)=>{
-        setBranch(br);
-    }
-
     return(
         <BranchBlock>
             <h3>지점선택</h3>
             {branchList.map((branch, idx)=>
                 <Branch 
                     key={idx} 
-                    onClick={()=>onClickBranch(branch.br)}
+                    onClick={()=>onSetBranch(branch.br)}
                     style={{
                         borderColor: (nowBranch === branch.br)&&'#222',
                         color: (nowBranch === branch.br)&&'#222'

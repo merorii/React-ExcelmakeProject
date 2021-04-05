@@ -1,7 +1,15 @@
 import React, {useState} from 'react';
 import MakeSub from '../components/MakeSub';
 import SelectBranch from '../components/SelectBranch';
-import styled from 'styled-components'
+import InputPageInfo from './InputPageInfo';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
+
+const SelectPageBlock = styled.section`
+    display: flex;
+
+`;
 
 const Button = styled.button`
     border: none;
@@ -15,18 +23,31 @@ const SelectPage = ()=>{
 
     const [pages, setPages] = useState({
         state: true,
-        cnt: 4
+        cnt: 4,
+        substate: false,
     });
 
+    const inputSubPage = ()=>{
+        setPages({
+            ...pages,
+            substate: true
+        })
+    }
+    const subpage = useSelector((state)=>state.subpages.subpage)
+
     return(
-        <>
-            <SelectBranch />
-            <MakeSub text='페이지' setPages={setPages} subpage={true} />
-            {pages.state && Array(pages.cnt).fill('a').map((hello, idx)=>
-                <MakeSub text='상세' cnt={idx+1} key={idx}/>
-            )}
-            {pages.state && <Button className="button">시작!</Button>}
-        </>
+        <SelectPageBlock>
+            <section>
+                <SelectBranch />
+                {pages.state && Array(pages.cnt).fill('a').map((hello, idx)=>
+                    <MakeSub 
+                        cnt={idx+1} 
+                        key={idx} 
+                    />
+                )}
+            </section>
+            <InputPageInfo subpage={subpage}/>
+        </SelectPageBlock>
     );
 }
 
