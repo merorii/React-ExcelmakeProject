@@ -1,45 +1,26 @@
 import React, {useState} from 'react';
-import MakeSub from '../components/MakeSub';
-import SelectBranch from '../components/SelectBranch';
-import InputPageInfo from './InputPageInfo';
+import MakeSub from './MakeSub';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-
 
 const SelectPageBlock = styled.section`
     display: flex;
-
-`;
-
-const Button = styled.button`
-    border: none;
-    display: block;
-    width: 300px;
-    line-height: 30px;
-    margin-top: 10px;
 `;
 
 const SelectPage = ()=>{
 
     const [pages, setPages] = useState({
         state: true,
-        cnt: 4,
+        cnt: 5,
     });
-
-    const subpage = useSelector((state)=>state.subpages.subpage)
 
     return(
         <SelectPageBlock>
-            <section>
-                <SelectBranch />
-                {Array(pages.cnt).fill('a').map((hello, idx)=>
-                    <MakeSub 
-                        cnt={idx+1} 
-                        key={idx} 
-                    />
-                )}
-            </section>
-            <InputPageInfo subpage={subpage}/>
+            {Array(pages.cnt).fill('a').map((hello, idx)=>
+                <MakeSub 
+                    cnt={idx+1} 
+                    key={idx} 
+                />
+            )}
         </SelectPageBlock>
     );
 }

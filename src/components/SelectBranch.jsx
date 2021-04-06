@@ -1,19 +1,11 @@
 import React, {useState} from 'react';
-
 import styled from 'styled-components';
-
 import { useDispatch } from 'react-redux';
-import { setPageBranch } from '../reducers/subpages';
+import { setPageBranch } from '../reducers/datas';
 
 const BranchBlock = styled.section`
-    margin: 10px;
     display: flex;
     align-items: center;
-
-    h3{
-        margin: 0;
-        margin-right: 20px;
-    }
 `;
 
 const Branch = styled.div`

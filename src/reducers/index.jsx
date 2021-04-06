@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import subpages from './subpages';
+import datas from './datas';
 
 const rootReducer = combineReducers({
-    subpages
+    datas
 });
 
 export default rootReducer;
