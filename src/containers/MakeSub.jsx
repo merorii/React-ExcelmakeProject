@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSubpageNum, setSubTitle } from '../reducers/datas';
 
 const MakeSubBlock = styled.div`
-    flex-direction: row;
+    flex-direction: row; 
     &+&{
         margin-left: 10px;
     }

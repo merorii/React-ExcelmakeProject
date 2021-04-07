@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const SelectPageBlock = styled.section`
     display: flex;
+    padding-bottom: 20px !important;
 `;
 
 const SelectPage = ()=>{
