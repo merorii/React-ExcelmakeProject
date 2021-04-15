@@ -70,6 +70,17 @@ const ExportExcel = ({couponArrTxt, culture}) => {
         ]);
     }, [mainTitle, mainNum]);
     
+    useEffect(()=>{
+        setMainData([
+            [
+                'mainBannerLength', mainNum
+            ],
+            [
+                'mainBanner', mainTitle.slice(0, mainNum).join(' | ')
+            ]
+        ]);
+    }, [mainTitle, mainNum]);
+    
   const exportData = ()=>{
     Array(data.length).fill('a').forEach((hello, idx)=>{
         const sub = document.querySelectorAll(`.sub${idx+1}`);
@@ -80,7 +91,8 @@ const ExportExcel = ({couponArrTxt, culture}) => {
         data[idx].subtitle = subText.substr(0, subText.length-3);
         data[idx].title = subTitle[idx];
     });
-
+    data[0].cultureAcademy = culture;
+    
     exportDataToXlsx(data, mainData, couponArrTxt, `ak_${br}`);
   }
 
@@ -90,11 +102,11 @@ const ExportExcel = ({couponArrTxt, culture}) => {
       const worksheetMain = XLSX.utils.json_to_sheet(mainData); // excel sheet하단의 worksheet에 해당 
       XLSX.utils.book_append_sheet(new_workbook, worksheetMain, 'main'); // excelsheet를 excel파일에 넣음 
 
-      const worksheetSub = XLSX.utils.json_to_sheet(data); // excel sheet하단의 worksheet에 해당 
-      XLSX.utils.book_append_sheet(new_workbook, worksheetSub, 'sub'); // excelsheet를 excel파일에 넣음 
+      const worksheetSub = XLSX.utils.json_to_sheet(data);
+      XLSX.utils.book_append_sheet(new_workbook, worksheetSub, 'sub');
 
-      const worksheetCoupon = XLSX.utils.json_to_sheet(couponData); // excel sheet하단의 worksheet에 해당 
-      XLSX.utils.book_append_sheet(new_workbook, worksheetCoupon, 'coupon'); // excelsheet를 excel파일에 넣음 
+      const worksheetCoupon = XLSX.utils.json_to_sheet(couponData); 
+      XLSX.utils.book_append_sheet(new_workbook, worksheetCoupon, 'coupon'); 
 
 
       XLSX.writeFile(new_workbook, filename + '.xlsx'); 
