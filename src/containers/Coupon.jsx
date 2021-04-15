@@ -77,7 +77,7 @@ const Coupon = ({couponArrTxt, setCouponArrTxt})=>{
             arrtxt='';
             arrtxt += (idx<9?`0${idx+1}`:idx+1) + " : [";
             arrs.forEach((arr,idx2)=>{
-                if(arr === 1) arrtxt += (idx2)<10?`"0${idx2+1}",`:`"${idx2+1}",`;
+                if(arr === 1) arrtxt += (idx2)<9?`"0${idx2+1}",`:`"${idx2+1}",`;
             })
             if(arrtxt.substr(arrtxt.length-1, 1) !== '[') arrtxt = arrtxt.substr(0, arrtxt.length-1);
             arrtxt += "]";
