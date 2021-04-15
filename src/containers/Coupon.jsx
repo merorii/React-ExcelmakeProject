@@ -72,7 +72,9 @@ const Coupon = ({couponArrTxt, setCouponArrTxt})=>{
 
     const couponMake = ()=>{
         let arrtxt = '';
+        let arrtxtLast = '';
         let arr = [];
+        
         couponArr.forEach((arrs,idx)=>{
             arrtxt='';
             arrtxt += (idx<9?`0${idx+1}`:idx+1) + " : [";
@@ -89,8 +91,17 @@ const Coupon = ({couponArrTxt, setCouponArrTxt})=>{
                 "사용하기 없는 쿠폰 번호": '[]'
             })
             :arr.push({ "고객군" : arrtxt });
-            console.log(arr)
+        });
+
+        //마지막 쿠폰번호 고객군
+        arrtxtLast += (couponArr.length<9?`0${couponArr.length+1}`:couponArr.length+1) + " : [";
+        couponArr[0].forEach((arr,idx2)=>{
+            arrtxtLast += (idx2)<9?`"0${idx2+1}",`:`"${idx2+1}",`;
         })
+        if(arrtxtLast.substr(arrtxtLast.length-1, 1) !== '[') arrtxtLast = arrtxtLast.substr(0, arrtxtLast.length-1);
+        arrtxtLast += "]";
+        
+        arr.push({ "고객군" : arrtxtLast });
         setCouponArrTxt(arr);
     }
 
@@ -123,7 +134,7 @@ const Coupon = ({couponArrTxt, setCouponArrTxt})=>{
                                 {rowIdx<9?`0${rowIdx+1}`:rowIdx+1}
                             </span>
                             {Array(coupon.col).fill(0).map((hello, colIdx)=>
-                                <div>
+                                <div key={colIdx} >
                                     {rowIdx === 0 && 
                                     <p style={{ 
                                         textAlign: 'center'
@@ -132,7 +143,6 @@ const Coupon = ({couponArrTxt, setCouponArrTxt})=>{
                                     </p>}
                                     <Row 
                                         type="checkbox" min="0" 
-                                        key={colIdx} 
                                         onClick={()=>{onClickCoupon(rowIdx, colIdx)}}
                                     />
                                 </div>
