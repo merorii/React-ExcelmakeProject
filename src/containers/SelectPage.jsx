@@ -11,7 +11,7 @@ const SelectPage = ()=>{
 
     const [pages, setPages] = useState({
         state: true,
-        cnt: 5,
+        cnt: 4,
     });
 
     return(

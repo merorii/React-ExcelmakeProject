@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Coupon from '../containers/Coupon';
-import MainSelectPage from '../containers/MainSelectPage';
-import Culture from '../containers/Culture';
 import SelectPage from '../containers/SelectPage';
 import SelectBranch from '../components/SelectBranch';
 import ExportExcel from '../components/ExportExcel';
@@ -25,16 +23,10 @@ const MainPageBlock = styled.div`
 const MainPage = () => {
   
   const [couponArrTxt, setCouponArrTxt] = useState([]);
-  const [culture, setCulture] = useState("ALL | 3/1 | 3/2 | 3/3");
 
   return (
     <MainPageBlock>
       <SelectBranch />
-      <MainSelectPage />
-      <Culture 
-        culture={culture} 
-        setCulture={setCulture} 
-      />
       <SelectPage />
       <Coupon 
         couponArrTxt={couponArrTxt} 
@@ -42,7 +34,6 @@ const MainPage = () => {
       />
       <ExportExcel 
         couponArrTxt={couponArrTxt} 
-        culture={culture}
       />
     </MainPageBlock>
   );

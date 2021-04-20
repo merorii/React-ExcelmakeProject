@@ -86,9 +86,9 @@ const Coupon = ({couponArrTxt, setCouponArrTxt})=>{
             idx===0
             ?arr.push({ 
                 "고객군" : arrtxt, 
-                "바코드 쿠폰 번호": couponBarcode !== '' && (couponBarcode*1)<9?`0${couponBarcode}`:couponBarcode, 
-                "마지막 쿠폰 번호": couponArr.length<10?`0${couponArr.length}`:couponArr.length, 
-                "사용하기 없는 쿠폰 번호": '[]'
+                "주차 쿠폰 번호": couponBarcode !== '' && (couponBarcode*1)<9?`0${couponBarcode}`:couponBarcode, 
+                "마지막 그룹 번호": couponArr.length<10?`0${couponArr.length}`:couponArr.length, 
+                "버튼 없는 쿠폰 번호": '[]'
             })
             :arr.push({ "고객군" : arrtxt });
         });

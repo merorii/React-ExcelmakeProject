@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { setPageBranch } from '../reducers/datas';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPageBranch, setSubTitle } from '../reducers/datas';
 
 const BranchBlock = styled.section`
     display: flex;
@@ -23,12 +23,26 @@ const Branch = styled.div`
 `;
 
 const SelectBranch = ()=>{
-    const [nowBranch, setBranch] = useState('bd');
+    const [nowBranch, setBranch] = useState({
+        code: 'bd',
+        text: '분당'
+    });
+
+    const datas = useSelector((state)=>state.datas.subtitle);
 
     const dispatch = useDispatch();
     const onSetBranch = (br) => {
-        dispatch(setPageBranch(br));
-        setBranch(br);
+        dispatch(setPageBranch({
+            code: br.br,
+            text: br.text
+        }));
+        setBranch({
+            code: br.br,
+            text: br.text
+        });
+        dispatch(setSubTitle(datas.map((data, idx)=>
+            idx === 3?`${br.text}의 부엌`:data
+        )));
     };
     
     const branchList = [
@@ -56,10 +70,10 @@ const SelectBranch = ()=>{
             {branchList.map((branch, idx)=>
                 <Branch 
                     key={idx} 
-                    onClick={()=>onSetBranch(branch.br)}
+                    onClick={()=>onSetBranch(branch)}
                     style={{
-                        borderColor: (nowBranch === branch.br)&&'#222',
-                        color: (nowBranch === branch.br)&&'#222'
+                        borderColor: (nowBranch.code === branch.br)&&'#222',
+                        color: (nowBranch.code === branch.br)&&'#222'
                     }}
                 >
                     {branch.text}

@@ -2,7 +2,6 @@ export const SET_BRANCH = 'SET_BRANCH';
 export const SET_SUBPAGE_NUM = 'SET_SUBPAGE_NUM';
 export const SET_SUB_TITLE = 'SET_SUB_TITLE';
 export const SET_MAINPAGE_NUM = 'SET_MAINPAGE_NUM';
-export const SET_MAIN_TITLE = 'SET_MAIN_TITLE';
 
 export const setPageBranch = (data)=>({
     type: SET_BRANCH,
@@ -20,18 +19,12 @@ export const setMainpageNum = (data)=>({
     type: SET_MAINPAGE_NUM,
     data, 
 });
-export const setMainTitle = (data)=>({
-    type: SET_MAIN_TITLE,
-    data, 
-});
-
 
 const initialState = {
-    br: 'bd',
+    br: {code:'bg', text:'분당'},
     mainpage: 4,
-    maintitle: ['금주의 할인소식','GIFT & EVENT','쇼핑뉴스','AK 매거진'],
-    subpage: [1,4,4,6,2],
-    subtitle: ['MY 쿠폰','리워드','이벤트','쇼핑뉴스','푸드'],
+    subpage: [2,5,5,3],
+    subtitle: ['사은행사 & MY 쿠폰','이벤트 & 특가','쇼핑뉴스','분당의 부엌'],
 }
 
 const reducer = (state = initialState, action)=>{
@@ -55,11 +48,6 @@ const reducer = (state = initialState, action)=>{
             return {
                 ...state,
                 mainpage: action.data
-            };
-        case SET_MAIN_TITLE:
-            return { 
-                ...state,
-                maintitle: action.data
             };
         default:
             return state;
