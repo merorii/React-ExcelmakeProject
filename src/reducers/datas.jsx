@@ -21,7 +21,7 @@ export const setMainpageNum = (data)=>({
 });
 
 const initialState = {
-    br: {code:'bg', text:'분당'},
+    br: {code:'bd', text:'분당'},
     mainpage: 4,
     subpage: [2,5,5,3],
     subtitle: ['사은행사 & MY 쿠폰','이벤트 & 특가','쇼핑뉴스','분당의 부엌'],
