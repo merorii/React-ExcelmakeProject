@@ -1,4 +1,3 @@
-import './App.css';
 import MainPage from './pages/MainPage';
 
 function App() {
@@ -7,4 +6,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

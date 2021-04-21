@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
-import MakeSub from '../components/MakeSub';
-import SelectBranch from '../components/SelectBranch';
+import MakeSub from './MakeSub';
+import styled from 'styled-components';
+
+const SelectPageBlock = styled.section`
+    display: flex;
+    padding-bottom: 20px !important;
+`;
 
 const SelectPage = ()=>{
 
     const [pages, setPages] = useState({
-        state: false,
-        cnt: 0
+        state: true,
+        cnt: 4,
     });
 
     return(
-        <>
-            <SelectBranch />
-            <MakeSub text='페이지' setPages={setPages} subpage={true} />
-            {pages.state && Array(pages.cnt).fill('a').map((hello, idx)=>
-                <MakeSub text='상세' cnt={idx+1} key={idx}/>
+        <SelectPageBlock>
+            {Array(pages.cnt).fill('a').map((hello, idx)=>
+                <MakeSub 
+                    cnt={idx+1} 
+                    key={idx} 
+                />
             )}
-            <button>와라랄</button>
-            <div>
-                <h3>제~목~</h3>
-                <input />
-            </div>
-        </>
+        </SelectPageBlock>
     );
 }
 
