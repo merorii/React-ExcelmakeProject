@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/React-ExcelmakeProject/static/css/main.29ec09a4.chunk.css",
+    "main.js": "/React-ExcelmakeProject/static/js/main.89c0febe.chunk.js",
+    "main.js.map": "/React-ExcelmakeProject/static/js/main.89c0febe.chunk.js.map",
+    "runtime-main.js": "/React-ExcelmakeProject/static/js/runtime-main.81af3d0b.js",
+    "runtime-main.js.map": "/React-ExcelmakeProject/static/js/runtime-main.81af3d0b.js.map",
+    "static/js/2.e492750b.chunk.js": "/React-ExcelmakeProject/static/js/2.e492750b.chunk.js",
+    "static/js/2.e492750b.chunk.js.map": "/React-ExcelmakeProject/static/js/2.e492750b.chunk.js.map",
+    "index.html": "/React-ExcelmakeProject/index.html",
+    "static/css/main.29ec09a4.chunk.css.map": "/React-ExcelmakeProject/static/css/main.29ec09a4.chunk.css.map",
+    "static/js/2.e492750b.chunk.js.LICENSE.txt": "/React-ExcelmakeProject/static/js/2.e492750b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.81af3d0b.js",
+    "static/js/2.e492750b.chunk.js",
+    "static/css/main.29ec09a4.chunk.css",
+    "static/js/main.89c0febe.chunk.js"
+  ]
+}
